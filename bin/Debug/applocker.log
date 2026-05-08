@@ -1,0 +1,96 @@
+2026-05-08 18:37:57 - ========== 应用启动 ==========
+2026-05-08 18:37:57 - 执行路径: C:\Users\arcwolf\RiderProjects\AppLocker\bin\Debug\AppLocker.exe
+2026-05-08 18:37:57 - 命令行参数: (无)
+2026-05-08 18:37:57 - 自身是否伪装: False
+2026-05-08 18:37:57 - 管理工具模式
+2026-05-08 18:38:43 - 伪装程序: 原程序 D:\Plain Craft Launcher 2.exe 重命名为 D:\Plain Craft Launcher 2.exe.bak, 启动器复制并替换图标
+2026-05-08 18:39:19 - 尝试还原: D:\Plain Craft Launcher 2.exe -> 备份恢复: D:\Plain Craft Launcher 2.exe.bak
+2026-05-08 18:39:19 - 还原成功: D:\Plain Craft Launcher 2.exe
+2026-05-08 18:39:31 - 伪装程序: 原程序 D:\Plain Craft Launcher 2.exe 重命名为 D:\Plain Craft Launcher 2.exe.bak, 启动器复制并替换图标
+2026-05-08 18:42:49 - ========== 应用启动 ==========
+2026-05-08 18:42:49 - 执行路径: C:\Users\arcwolf\RiderProjects\AppLocker\bin\Debug\AppLocker.exe
+2026-05-08 18:42:49 - 命令行参数: (无)
+2026-05-08 18:42:49 - 自身是否伪装: False
+2026-05-08 18:42:49 - 管理工具模式
+2026-05-08 18:42:57 - 尝试还原: D:\Plain Craft Launcher 2.exe -> 备份恢复: D:\Plain Craft Launcher 2.exe.bak
+2026-05-08 18:42:57 - 还原失败: 对路径“D:\Plain Craft Launcher 2.exe”的访问被拒绝。
+2026-05-08 18:43:03 - 尝试还原: D:\Plain Craft Launcher 2.exe -> 备份恢复: D:\Plain Craft Launcher 2.exe.bak
+2026-05-08 18:43:03 - 还原失败: 对路径“D:\Plain Craft Launcher 2.exe”的访问被拒绝。
+2026-05-08 18:43:18 - ========== 应用启动 ==========
+2026-05-08 18:43:18 - 执行路径: C:\Users\arcwolf\RiderProjects\AppLocker\bin\Debug\AppLocker.exe
+2026-05-08 18:43:18 - 命令行参数: (无)
+2026-05-08 18:43:18 - 自身是否伪装: False
+2026-05-08 18:43:18 - 管理工具模式
+2026-05-08 18:43:24 - 尝试还原: D:\Plain Craft Launcher 2.exe -> 备份恢复: D:\Plain Craft Launcher 2.exe.bak
+2026-05-08 18:43:24 - 还原成功: D:\Plain Craft Launcher 2.exe
+2026-05-08 18:43:34 - 伪装程序: 原程序 D:\Plain Craft Launcher 2.exe 重命名为 D:\Plain Craft Launcher 2.exe.bak, 启动器复制并替换图标
+2026-05-08 18:44:56 - 尝试还原: D:\Plain Craft Launcher 2.exe -> 备份恢复: D:\Plain Craft Launcher 2.exe.bak
+2026-05-08 18:44:56 - 还原成功: D:\Plain Craft Launcher 2.exe
+2026-05-08 18:45:09 - 伪装程序: 原程序 D:\Plain Craft Launcher 2.exe 重命名为 D:\Plain Craft Launcher 2.exe.bak, 启动器复制并替换图标
+2026-05-08 18:47:42 - ========== 应用启动 ==========
+2026-05-08 18:47:42 - 执行路径: C:\Users\arcwolf\RiderProjects\AppLocker\bin\Debug\AppLocker.exe
+2026-05-08 18:47:42 - 命令行参数: (无)
+2026-05-08 18:47:42 - 自身是否伪装: False
+2026-05-08 18:47:42 - 管理工具模式
+2026-05-08 18:48:38 - 尝试还原: D:\Plain Craft Launcher 2.exe -> 备份恢复: D:\Plain Craft Launcher 2.exe.bak
+2026-05-08 18:48:38 - 还原成功: D:\Plain Craft Launcher 2.exe
+2026-05-08 18:49:06 - 伪装程序: 原程序 D:\supermium_138_64_setup.exe 重命名为 D:\supermium_138_64_setup.exe.bak, 启动器复制并替换图标
+2026-05-08 18:49:25 - 尝试还原: D:\supermium_138_64_setup.exe -> 备份恢复: D:\supermium_138_64_setup.exe.bak
+2026-05-08 18:49:25 - 还原成功: D:\supermium_138_64_setup.exe
+2026-05-08 18:55:00 - ========== 应用启动 ==========
+2026-05-08 18:55:00 - 执行路径: C:\Users\arcwolf\RiderProjects\AppLocker\bin\Debug\AppLocker.exe
+2026-05-08 18:55:00 - 命令行参数: (无)
+2026-05-08 18:55:00 - 自身是否伪装: False
+2026-05-08 18:55:00 - 管理工具模式
+2026-05-08 23:43:10 - ========== 应用启动 ==========
+2026-05-08 23:43:10 - 执行路径: C:\Users\arcwolf\RiderProjects\AppLocker\bin\Debug\AppLocker.exe
+2026-05-08 23:43:10 - 命令行参数: (无)
+2026-05-08 23:43:10 - 自身是否伪装: False
+2026-05-08 23:43:10 - 管理工具模式
+2026-05-08 23:43:30 - 伪装程序: 原程序 D:\supermium_138_64_setup.exe 重命名为 D:\supermium_138_64_setup.exe.bak, 启动器复制并替换图标
+2026-05-08 23:43:54 - 尝试还原: D:\supermium_138_64_setup.exe -> 备份恢复: D:\supermium_138_64_setup.exe.bak
+2026-05-08 23:43:54 - 还原成功: D:\supermium_138_64_setup.exe
+2026-05-08 23:44:09 - 伪装程序: 原程序 D:\supermium_138_64_setup.exe 重命名为 D:\supermium_138_64_setup.exe.bak, 启动器复制并替换图标
+2026-05-08 23:44:21 - 尝试还原: D:\supermium_138_64_setup.exe -> 备份恢复: D:\supermium_138_64_setup.exe.bak
+2026-05-08 23:44:21 - 还原成功: D:\supermium_138_64_setup.exe
+2026-05-08 23:44:32 - 伪装程序: 原程序 D:\supermium_138_64_setup.exe 重命名为 D:\supermium_138_64_setup.exe.bak, 启动器复制并替换图标
+2026-05-08 23:44:43 - 尝试还原: D:\supermium_138_64_setup.exe -> 备份恢复: D:\supermium_138_64_setup.exe.bak
+2026-05-08 23:44:43 - 还原成功: D:\supermium_138_64_setup.exe
+2026-05-08 23:48:52 - ========== 应用启动 ==========
+2026-05-08 23:48:52 - 执行路径: C:\Users\arcwolf\RiderProjects\AppLocker\bin\Debug\AppLocker.exe
+2026-05-08 23:48:52 - 命令行参数: (无)
+2026-05-08 23:48:52 - 自身是否伪装: False
+2026-05-08 23:48:52 - 管理工具模式
+2026-05-08 23:49:59 - ========== 应用启动 ==========
+2026-05-08 23:49:59 - 执行路径: C:\Users\arcwolf\RiderProjects\AppLocker\bin\Debug\AppLocker.exe
+2026-05-08 23:49:59 - 命令行参数: (无)
+2026-05-08 23:49:59 - 自身是否伪装: False
+2026-05-08 23:49:59 - 管理工具模式
+2026-05-08 23:51:24 - ========== 应用启动 ==========
+2026-05-08 23:51:25 - 执行路径: C:\Users\arcwolf\RiderProjects\AppLocker\bin\Debug\AppLocker.exe
+2026-05-08 23:51:25 - 命令行参数: (无)
+2026-05-08 23:51:25 - 自身是否伪装: False
+2026-05-08 23:51:25 - 管理工具模式
+2026-05-08 23:51:37 - 伪装程序: 原程序 D:\Full_Webpack-57.2.1683-DJ4900_Full_Webpack.exe 重命名为 D:\Full_Webpack-57.2.1683-DJ4900_Full_Webpack.exe.bak, 启动器复制并替换图标
+2026-05-08 23:58:15 - ========== 应用启动 ==========
+2026-05-08 23:58:15 - 执行路径: C:\Users\arcwolf\RiderProjects\AppLocker\bin\Debug\AppLocker.exe
+2026-05-08 23:58:15 - 命令行参数: (无)
+2026-05-08 23:58:15 - 自身是否伪装: False
+2026-05-08 23:58:15 - 管理工具模式
+2026-05-09 00:02:50 - ========== 应用启动 ==========
+2026-05-09 00:02:50 - 执行路径: C:\Users\arcwolf\RiderProjects\AppLocker\bin\Debug\AppLocker.exe
+2026-05-09 00:02:50 - 命令行参数: (无)
+2026-05-09 00:02:50 - 自身是否伪装: False
+2026-05-09 00:02:50 - 管理工具模式
+2026-05-09 00:03:12 - ========== 应用启动 ==========
+2026-05-09 00:03:12 - 执行路径: C:\Users\arcwolf\RiderProjects\AppLocker\bin\Debug\AppLocker.exe
+2026-05-09 00:03:12 - 命令行参数: (无)
+2026-05-09 00:03:12 - 自身是否伪装: False
+2026-05-09 00:03:12 - 管理工具模式
+2026-05-09 00:03:19 - 尝试还原: D:\Full_Webpack-57.2.1683-DJ4900_Full_Webpack.exe -> 备份恢复: D:\Full_Webpack-57.2.1683-DJ4900_Full_Webpack.exe.bak
+2026-05-09 00:03:19 - 还原成功: D:\Full_Webpack-57.2.1683-DJ4900_Full_Webpack.exe
+2026-05-09 00:03:31 - ========== 应用启动 ==========
+2026-05-09 00:03:31 - 执行路径: C:\Users\arcwolf\RiderProjects\AppLocker\bin\Debug\AppLocker.exe
+2026-05-09 00:03:31 - 命令行参数: (无)
+2026-05-09 00:03:31 - 自身是否伪装: False
+2026-05-09 00:03:31 - 管理工具模式

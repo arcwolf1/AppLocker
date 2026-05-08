@@ -1,0 +1,14 @@
+C:\Users\arcwolf\RiderProjects\AppLocker\obj\Debug\AppLocker.csproj.AssemblyReference.cache
+C:\Users\arcwolf\RiderProjects\AppLocker\obj\Debug\Interop.IWshRuntimeLibrary.dll
+C:\Users\arcwolf\RiderProjects\AppLocker\obj\Debug\AppLocker.csproj.ResolveComReference.cache
+C:\Users\arcwolf\RiderProjects\AppLocker\obj\Debug\AppLocker.Properties.Resources.resources
+C:\Users\arcwolf\RiderProjects\AppLocker\obj\Debug\AppLocker.csproj.GenerateResource.cache
+C:\Users\arcwolf\RiderProjects\AppLocker\obj\Debug\AppLocker.csproj.CoreCompileInputs.cache
+C:\Users\arcwolf\RiderProjects\AppLocker\bin\Debug\AppLocker.exe.config
+C:\Users\arcwolf\RiderProjects\AppLocker\bin\Debug\AppLocker.exe
+C:\Users\arcwolf\RiderProjects\AppLocker\bin\Debug\AppLocker.pdb
+C:\Users\arcwolf\RiderProjects\AppLocker\obj\Debug\AppLocker.csproj.Fody.CopyLocal.cache
+C:\Users\arcwolf\RiderProjects\AppLocker\obj\Debug\AppLocker.csproj.Fody.RuntimeCopyLocal.cache
+C:\Users\arcwolf\RiderProjects\AppLocker\obj\Debug\AppLocker.exe
+C:\Users\arcwolf\RiderProjects\AppLocker\obj\Debug\AppLocker.pdb
+C:\Users\arcwolf\RiderProjects\AppLocker\obj\Debug\AppLocker.ManagerForm.resources
