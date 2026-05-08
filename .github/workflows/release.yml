@@ -1,0 +1,44 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'          # 推送 v1.0.0 等 tag 时触发
+  workflow_dispatch:   # 允许手动触发
+
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: write  # 必须：允许写入 Release
+
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v4
+
+    - name: 设置 MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: 还原 NuGet 包
+      run: nuget restore AppLocker.sln
+
+    - name: 生成项目
+      run: msbuild AppLocker.sln /p:Configuration=Release /p:Platform="Any CPU"
+
+    - name: 上传构建产物（临时存储）
+      uses: actions/upload-artifact@v4
+      with:
+        name: AppLocker-Release
+        path: bin/Release/AppLocker.exe
+
+    - name: 创建 Release 并上传资源
+      uses: softprops/action-gh-release@v2
+      with:
+        name: Release ${{ github.ref_name }}
+        tag_name: ${{ github.ref_name }}
+        body: |
+          🚀 自动构建版本 ${{ github.ref_name }}
+          - 下载 AppLocker.exe 即可使用，无需安装。
+        files: bin/Release/AppLocker.exe
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
