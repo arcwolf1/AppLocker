@@ -127,94 +127,97 @@ namespace AppLocker
         }
 
         // ---------- 核心功能：原位替换 ----------
-        private void btnReplaceExe_Click(object sender, EventArgs e)
+       private void btnReplaceExe_Click(object sender, EventArgs e)
+{
+    using (OpenFileDialog ofd = new OpenFileDialog())
+    {
+        ofd.Filter = "可执行文件 (*.exe)|*.exe";
+        if (ofd.ShowDialog() != DialogResult.OK) return;
+
+        string originalExe = ofd.FileName;
+        string backupPath = originalExe + ".bak";
+
+        // 检查是否已在列表中（通过 FakePath 精确匹配）
+        if (entries.Any(pe => pe.FakePath.Equals(originalExe, StringComparison.OrdinalIgnoreCase)))
         {
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.Filter = "可执行文件 (*.exe)|*.exe";
-                if (ofd.ShowDialog() != DialogResult.OK) return;
-
-                string originalExe = ofd.FileName;
-                string backupPath = originalExe + ".bak";
-
-                // 检查是否已在列表中
-                if (entries.Any(pe => pe.FakePath.Equals(originalExe, StringComparison.OrdinalIgnoreCase)))
-                {
-                    MessageBox.Show("该程序已被伪装，请先还原。", "提示",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                // 输入密码
-                string password = ShowPasswordDialog("设置独立密码",
-                    $"请为“{Path.GetFileName(originalExe)}”设置密码：");
-                if (string.IsNullOrEmpty(password))
-                {
-                    MessageBox.Show("未设置密码，操作取消。", "取消",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // 二次确认
-                if (MessageBox.Show(
-                    $"即将伪装 {Path.GetFileName(originalExe)}，原文件将重命名为 .bak 备份。\n\n" +
-                    "之后双击该程序将弹出密码框，输入正确密码才能运行原程序。\n\n确认继续？",
-                    "确认伪装", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
-                    return;
-
-                try
-                {
-                    // 1. 删除可能残留的备份文件
-                    if (File.Exists(backupPath))
-                        File.Delete(backupPath);
-
-                    // 2. 提取原程序图标（用于植入）
-                    Icon originalIcon = Icon.ExtractAssociatedIcon(originalExe);
-
-                    // 3. 备份原程序
-                    File.Move(originalExe, backupPath);
-
-                    // 4. 复制自身到原位置，并改为原程序名
-                    string myExe = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                    File.Copy(myExe, originalExe, overwrite: true);
-
-                    // 5. 将原图标植入伪装exe
-                    if (originalIcon != null)
-                    {
-                        SetExeIcon(originalExe, originalIcon);
-                        originalIcon.Dispose();
-                    }
-
-                    // 6. 记录配置
-                    string hash = ComputeSha256Hash(password);
-                    // 在 File.Copy 和 SetExeIcon 之后，entries.Add 之前
-                    Logger.Log($"伪装程序: 原程序 {originalExe} 重命名为 {backupPath}, 启动器复制并替换图标");
-                    entries.Add(new ProgramEntry
-                    {
-                        FakePath = originalExe,
-                        PasswordHash = hash,
-                        BackupPath = backupPath
-                    });
-                    SaveEntries();
-                    // 在目标目录生成配置文件，使伪装后的启动器能读取到映射
-                    string targetDir = Path.GetDirectoryName(originalExe);
-                    string targetConfigPath = Path.Combine(targetDir, ConfigFile);
-                    string configLine = $"{originalExe}|{hash}|{backupPath}";
-                    File.WriteAllText(targetConfigPath, configLine + Environment.NewLine);
-                    RefreshList();
-
-                    MessageBox.Show("伪装成功！现在双击原程序将弹出密码框。", "完成",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("操作失败：" + ex.Message +
-                        "\n\n请确保以管理员身份运行本工具，且目标程序未被占用。",
-                        "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            MessageBox.Show("该程序已被伪装，请先还原。", "提示",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
         }
 
+        // 1. 输入密码并确认
+        string password = ShowPasswordDialog("设置独立密码",
+            $"请为“{Path.GetFileName(originalExe)}”设置密码：");
+        if (string.IsNullOrEmpty(password))
+        {
+            MessageBox.Show("未设置密码，操作取消。", "取消", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+
+        string confirmPassword = ShowPasswordDialog("确认密码", "请再次输入密码：");
+        if (password != confirmPassword)
+        {
+            MessageBox.Show("两次输入的密码不一致，操作取消。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+
+        // 2. 二次确认伪装操作
+        if (MessageBox.Show(
+            $"即将伪装 {Path.GetFileName(originalExe)}，原文件将重命名为 .bak 备份。\n\n" +
+            "之后双击该程序将弹出密码框，输入正确密码才能运行原程序。\n\n确认继续？",
+            "确认伪装", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+        {
+            return;
+        }
+
+        // 3. 计算密码哈希（已去除首尾空格）
+        string hash = PasswordHelper.ComputeSha256Hash(password);
+        Logger.Log($"伪装程序: {originalExe} -> {backupPath}, 密码哈希: {hash}");
+
+        // 4. 在提权前，先写入目标目录的配置文件（覆盖写入，避免旧条目干扰）
+        string targetDir = Path.GetDirectoryName(originalExe);
+        string targetConfigPath = Path.Combine(targetDir, ConfigFile);
+        string configLine = $"{originalExe}|{hash}|{backupPath}";
+        try
+        {
+            File.WriteAllText(targetConfigPath, configLine + Environment.NewLine);
+        }
+        catch (Exception ex)
+        {
+            Logger.Log($"写入目标配置文件失败: {ex.Message}");
+            MessageBox.Show("无法写入配置文件，请确认权限。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+
+        // 5. 将条目添加到管理工具自身的列表并保存（使 UI 同步）
+        entries.Add(new ProgramEntry
+        {
+            FakePath = originalExe,
+            PasswordHash = hash,
+            BackupPath = backupPath
+        });
+        SaveEntries();
+        RefreshList();
+
+        // 6. 提权执行文件重命名和图标替换（管理员操作）
+        bool success = RunAsAdmin("replace", originalExe, backupPath, iconSourcePath: originalExe);
+        if (success)
+        {
+            MessageBox.Show("伪装成功！现在双击原程序将弹出密码框。", "完成",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        else
+        {
+            // 提权失败时，回滚已添加的条目和配置文件
+            entries.RemoveAll(pe => pe.FakePath == originalExe);
+            SaveEntries();
+            RefreshList();
+            try { if (File.Exists(targetConfigPath)) File.Delete(targetConfigPath); } catch { }
+            MessageBox.Show("操作被用户取消或需要管理员权限，伪装失败。", "失败",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+}
         // ---------- 还原被替换的程序 ----------
         private void btnRestoreExe_Click(object sender, EventArgs e)
         {
@@ -387,6 +390,37 @@ namespace AppLocker
             {
                 MessageBox.Show("创建快捷方式失败：" + ex.Message, "错误",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private bool RunAsAdmin(string actionType, string fakePath, string backupPath, string passwordHash = "", string iconSourcePath = "")
+        {
+            var action = new AdminAction
+            {
+                Action = actionType,
+                FakePath = fakePath,
+                BackupPath = backupPath,
+                PasswordHash = passwordHash,
+                IconSourcePath = iconSourcePath
+            };
+            string args = $"/admin {action.ToBase64()}";
+            try
+            {
+                ProcessStartInfo psi = new ProcessStartInfo
+                {
+                    FileName = Application.ExecutablePath,
+                    Arguments = args,
+                    Verb = "runas",
+                    UseShellExecute = true,
+                    WindowStyle = ProcessWindowStyle.Hidden
+                };
+                Process p = Process.Start(psi);
+                p.WaitForExit();  // 等待管理员进程完成
+                return p.ExitCode == 0;
+            }
+            catch (System.ComponentModel.Win32Exception)
+            {
+                // 用户拒绝了 UAC 提权
+                return false;
             }
         }
 
