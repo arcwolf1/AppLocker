@@ -1,0 +1,31 @@
+name: Build AppLocker
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:   # 允许手动触发
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v4
+
+    - name: 设置 MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: 还原 NuGet 包
+      run: nuget restore AppLocker.sln
+
+    - name: 生成项目
+      run: msbuild AppLocker.sln /p:Configuration=Release /p:Platform="Any CPU"
+
+    - name: 上传构建产物 (AppLocker.exe)
+      uses: actions/upload-artifact@v4
+      with:
+        name: AppLocker-Release
+        path: bin/Release/AppLocker.exe
